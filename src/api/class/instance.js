@@ -444,6 +444,18 @@ class WhatsAppInstance {
         throw new Error('no account exists')
     }
 
+    async verifyIsBusiness(id) {
+        const result = await this.instance.sock?.getBusinessProfile(id)
+        return result !== undefined;
+
+    }
+
+    async getBusinessProfile(id) {
+        const result = await this.instance.sock?.getBusinessProfile(id)
+        if (result?.wid) return result
+        throw new Error('no business account found')
+    }
+
     async sendTextMessage(to, message) {
         await this.verifyId(this.getWhatsAppId(to))
         const data = await this.instance.sock?.sendMessage(

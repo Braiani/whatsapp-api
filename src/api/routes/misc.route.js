@@ -6,6 +6,8 @@ const loginVerify = require('../middlewares/loginCheck')
 const router = express.Router()
 
 router.route('/onwhatsapp').get(keyVerify, loginVerify, controller.onWhatsapp)
+router.route('/isBusiness').get(keyVerify, loginVerify, controller.isBusiness)
+router.route('/getBusinessProfile').get(keyVerify, loginVerify, controller.getBusinessProfile)
 router.route('/downProfile').get(keyVerify, loginVerify, controller.downProfile)
 router.route('/getStatus').get(keyVerify, loginVerify, controller.getStatus)
 router.route('/blockUser').get(keyVerify, loginVerify, controller.blockUser)

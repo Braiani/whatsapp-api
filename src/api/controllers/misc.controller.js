@@ -6,6 +6,20 @@ exports.onWhatsapp = async (req, res) => {
     return res.status(201).json({ error: false, data: data })
 }
 
+exports.isBusiness = async (req, res) => {
+    const data = await WhatsAppInstances[req.query.key]?.verifyIsBusiness(
+        WhatsAppInstances[req.query.key]?.getWhatsAppId(req.query.id)
+    )
+    return res.status(201).json({ error: false, data: data })
+}
+
+exports.getBusinessProfile = async (req, res) => {
+    const data = await WhatsAppInstances[req.query.key]?.getBusinessProfile(
+        WhatsAppInstances[req.query.key]?.getWhatsAppId(req.query.id)
+    )
+    return res.status(201).json({ error: false, data: data })
+}
+
 exports.downProfile = async (req, res) => {
     const data = await WhatsAppInstances[req.query.key]?.DownloadProfile(
         req.query.id
